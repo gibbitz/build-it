@@ -1,4 +1,4 @@
-# ITN Video Platform AKA TD-Dashboard
+# Weather API Code Challenge
 
 ## OVERVIEW <a name="overview"></a>
 This codebase was developed as part of an application process to display a 5 day weather forcast. This readme file outlines the filestructure, system configuration and build processes.
