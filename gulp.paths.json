@@ -1,0 +1,32 @@
+{
+  "base"            : {
+    "dist"          : "dist/",
+    "srcRoot"       : "./",
+    "src"           : "src/",
+    "tmp"           : ".tmp/",
+    "web"           : "/",
+    "npm"           : "node_modules/",
+    "devServerURL"  : "http://openweathermap.org/"
+  },
+  "paths"  : {
+    "css"                 : "ui/css/",
+    "fonts"               : "ui/fonts/",
+    "images"              : "ui/img/",
+    "js"                  : "ui/js/",
+    "scripts"             : "ui/scripts/",
+    "scss"                : "ui/scss/",
+    "scssPartials"        : "ui/scss/partials/",
+    "scssComponents"      : "ui/scss/components/",
+    "sourceMap"           : "../maps/",
+    "debug"               : "debug/"
+  },
+  "files"           : {
+    "gulpConfig"    : "gulp.paths.json",
+    "cssAll"        : "all.css",
+    "scssAll"       : "main.scss",
+    "jsApp"         : "app.jsx",
+    "jsAppMin"      : "app.js",
+    "jsDebug"       : "app.js",
+    "index"         : "index.html"
+  }
+}

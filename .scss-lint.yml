@@ -1,0 +1,38 @@
+# Linter Options
+
+linters:
+  IdSelector:
+    enabled: false
+  SelectorDepth:
+    enabled: true
+    max_depth: 3
+  NestingDepth:
+    enabled: true
+    max_depth: 3
+    ignore_parent_selectors: true
+  ImportantRule:
+    enabled: true
+  Indentation:
+    enabled: true
+    allow_non_nested_indentation: false
+    character: tab # space # or 'tab'
+    width: 1
+  QualifyingElement:
+    enabled: false
+  PlaceholderInExtend:
+    enabled: false
+  # have to remove this due to mixins for responsive and cascade
+  DeclarationOrder:
+    enabled: false
+  # legacy selectors break this rule
+  SelectorFormat:
+    enabled: false
+  # due to webfont naming convention this needs to be ignored
+  ImportPath:
+    enabled: false
+  PseudoElement:
+    enabled: false
+  VendorPrefix:
+    enabled: false
+  NameFormat:
+    enabled: false
