@@ -2,27 +2,27 @@
 
 // plugins
 var babelify        = require('babelify'),
-		base64          = require('postcss-base64'),
-		rollupify       = require('rollupify'),
-		browserify      = require('browserify'),
-		browserSync     = require('browser-sync'),
-		buffer          = require('vinyl-buffer'),
-		del             = require('del'),
-		expand          = require('glob-expand'),
-		gulp            = require('gulp'),
-		historyProxy    = require('connect-history-api-fallback'),
-		imgurify        = require('imgurify'),
-		map             = require('map-stream'),
-		merge           = require('merge-stream'),
-		plugins         = require('gulp-load-plugins')(),
-		pngquant        = require('imagemin-pngquant'),
-		proxy           = require('http-proxy-middleware'),
-		url             = require('url'),
-		sassInlineImage = require('sass-inline-image'),
-		scssify         = require('scssify'),
-		svg             = require('svg-browserify'),
-		browserifyCss   = require('browserify-css'),
-		source          = require('vinyl-source-stream');
+    base64          = require('postcss-base64'),
+    browserify      = require('browserify'),
+    browserifyCss   = require('browserify-css'),
+    browserSync     = require('browser-sync'),
+    buffer          = require('vinyl-buffer'),
+    del             = require('del'),
+    expand          = require('glob-expand'),
+    gulp            = require('gulp'),
+    historyProxy    = require('connect-history-api-fallback'),
+    imgurify        = require('imgurify'),
+    map             = require('map-stream'),
+    merge           = require('merge-stream'),
+    plugins         = require('gulp-load-plugins')(),
+    pngquant        = require('imagemin-pngquant'),
+    proxy           = require('http-proxy-middleware'),
+    rollupify       = require('rollupify'),
+    sassInlineImage = require('sass-inline-image'),
+    scssify         = require('scssify'),
+    source          = require('vinyl-source-stream'),
+    svg             = require('svg-browserify'),
+    url             = require('url');
 
 // vars
 var config          = require('./gulp.paths.json'),
@@ -84,8 +84,6 @@ var config          = require('./gulp.paths.json'),
 		reload = function(){
 			browserSync.reload();
 		},
-		// use
-		// .pipe(map(_function))
 		_function         = function(_file, _cb) {
 			console.log(_file.contents.toString('utf-8'));
 			_cb(null, _file);
@@ -118,7 +116,7 @@ var config          = require('./gulp.paths.json'),
 				};
 		browserSync({
 			server: {
-				baseDir: [ base.tmp, base.src, base.src + paths.proxied ],
+				baseDir: [ base.tmp, base.src],
 				index: 'index.html',
 				middleware: [
 					historyProxy(),
@@ -137,7 +135,7 @@ var config          = require('./gulp.paths.json'),
 				};
 		browserSync({
 			server: {
-				baseDir: [ base.dist, base.src + paths.proxied ],
+				baseDir: [ base.dist ],
 				index: 'index.html',
 				middleware: [
 					historyProxy(),
@@ -195,14 +193,11 @@ var config          = require('./gulp.paths.json'),
 	|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 
 	gulp.task('test', function () {
-		return gulp.src([base.src + 'test/**.js', base.src + 'test/**/*.js'], {})
+		return gulp.src([base.test + '**/?(*.)(spec|test).js?(x)'])
 			.pipe(plugins.plumber())
-			.pipe( plugins.mocha(
-					{
-						'compilers': 'js:babel-core/register',
-						'require' : ['jsdom-global/register']
-					}
-				));
+      .pipe(plugins.jest.default({
+        cacheDirectory: '/.tmp/jest/<path>',
+      }))
 	});
 
 	/* |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -238,9 +233,9 @@ var config          = require('./gulp.paths.json'),
 .||...|'   '|..'|. .||. ||.  '|..'||. .||.  '|...' .||.    |'..|'
 
 |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
-
+console.log(base.srcRoot + base.src + paths.js + paths.debug + files.jsDebug);
 	devBundler = browserify({
-		entries: [base.src + paths.js + paths.debug + files.jsDebug],
+		entries: [base.srcRoot + base.src + paths.js + paths.debug + files.jsDebug],
 		// IE/Edge don't like Mimic code uncomment below and comment above
 		// to test these with proxy/mocks for IE/Edge
 		// entries: [base.src + paths.js + files.jsApp],
@@ -274,7 +269,7 @@ var config          = require('./gulp.paths.json'),
 				},
 				'postcss-base64': {
 					extensions: ['.svg', '.woff', '.png'],
-					root: process.cwd() + '/Frontend/',
+					root: process.cwd() + '/' + base.src,
 					excludeAtFontFace: false
 				}
 			}
@@ -312,7 +307,7 @@ var config          = require('./gulp.paths.json'),
 				},
 				'postcss-base64': {
 					extensions: ['.svg', '.woff', '.png'],
-					root: process.cwd() + '/Frontend/',
+					root: process.cwd() + '/' + base.src,
 					excludeAtFontFace: false
 				}
 			}
@@ -333,7 +328,7 @@ var config          = require('./gulp.paths.json'),
  |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 
 	// gulp.task('js', ['scss:release', 'lint:js'], function() {
-	gulp.task('js:default', [ 'test', 'prebundle', 'sprite', 'lint:scss', 'lint:js'], function() {
+	gulp.task('js:default', [ 'test', 'prebundle', 'lint:scss', 'lint:js'], function() {
 		return devBundler.bundle()
 			.on('error', function(err){
 				// print the error -- if you get this far you'll know it ;)
@@ -342,29 +337,13 @@ var config          = require('./gulp.paths.json'),
 				this.emit('end');
 			})
 			.pipe(plugins.plumber())
-			.pipe(source('debug/debug-app.js'))
+			.pipe(source('debug/app.js'))
 			.pipe(buffer())
 			.pipe(plugins.rename(files.jsAppMin))
 			.pipe( gulp.dest( base.tmp + paths.scripts ));
 	});
 
-	// gulp.task('js', ['scss:release', 'lint:js'], function() {
-	gulp.task('js:localDefault', [ 'test', 'prebundle', 'sprite', 'lint:scss', 'lint:js' ], function() {
-		return devBundler.bundle()
-			.on('error', function(err){
-				// print the error -- if you get this far you'll know it ;)
-				plugins.util.log( plugins.util.colors.white.bgRed(err.message) );
-				// end this stream
-				this.emit('end');
-			})
-			.pipe(plugins.plumber())
-			.pipe(source('debug/debug-app.js'))
-			.pipe(buffer())
-			.pipe(plugins.rename(files.jsAppMin))
-			.pipe( gulp.dest( base.dist + paths.scripts ));
-	});
-
-	gulp.task('js:release', ['test', 'prebundle', 'sprite', 'image-min:release', 'lint:scss', 'lint:js' ], function() {
+	gulp.task('js:release', ['test', 'prebundle', 'image-min:release', 'lint:scss', 'lint:js' ], function() {
 		return releaseBundler.bundle()
 			.on('error', function(err){
 				// print the error -- if you get this far you'll know it ;)
@@ -410,42 +389,6 @@ var config          = require('./gulp.paths.json'),
 			}));
 	});
 
-
-	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
-	 .|'''.|                    ||    .
-	 ||..  '  ... ...  ... ..  ...  .||.    ....   ....
-		''|||.   ||'  ||  ||' ''  ||   ||   .|...|| ||. '
-	.     '||  ||    |  ||      ||   ||   ||      . '|..
-	|'....|'   ||...'  .||.    .||.  '|.'  '|...' |'..|'
-						 ||
-						''''
-	 |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
-
-	gulp.task('sprite', ['clean'], function () {
-		var spriteStreams = gulp.src(paths.sprites + '**/*.png', {cwd:base.src})
-					.pipe(
-						plugins.spritesmith({
-							imgName   : files.spriteImage,
-							imgPath   : base.web + paths.images,
-							cssName   : files.spriteCss,
-							cssTemplate: base.src + paths.scssSpriteTemplates + files.spriteTemplate,
-							cssVarMap : function(_sprite){
-								_sprite.name = _sprite.name
-									.replace( '^',':' )
-									.replace( /^_/, '.' );
-							}
-						})
-					),
-					imgStream = spriteStreams.img
-						.pipe(plugins.plumber())
-						.pipe( gulp.dest(base.tmp + paths.images) ),
-					cssStream = spriteStreams.css
-						.pipe(plugins.plumber())
-						.pipe( gulp.dest(base.tmp + paths.css) );
-			return merge(imgStream, cssStream);
-	});
-
 	/* ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 	'||'                                                ||
@@ -457,11 +400,10 @@ var config          = require('./gulp.paths.json'),
 
 	 |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 
-	gulp.task('image-min:release', ['sprite'], function(){
+	gulp.task('image-min:release', [], function(){
 		return gulp.src( [
 					base.src + '**/*.{png, jpg, jpeg, svg}',
 					base.tmp + '**/*.{png, jpg, jpeg, svg}',
-					'!' + base.src + paths.sprites + '**',
 					'!' + base.src + paths.glyphs + '**'
 				])
 				.pipe(plugins.plumber())
