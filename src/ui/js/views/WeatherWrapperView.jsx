@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { Link } from 'react-router';
-import { createLocationRequest } from '../actions';
+import { createDataRequest } from '../actions/creators';
 
 class WeatherWrapperView extends React.Component {
   static get propTypes(){
@@ -46,7 +46,7 @@ const mapStateToProps = (_state) => ({
 
 const mapDispatchToProps = (_dispatch) => ({
   requestLocation: () => {
-    _dispatch(createLocationRequest());
+    _dispatch(createDataRequest());
   }
 });
 

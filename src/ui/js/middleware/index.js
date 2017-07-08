@@ -2,7 +2,7 @@ import { applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
 import { browserHistory} from 'react-router';
 
-import { apiMiddleware } from './apiMiddleware';
+import { dataServicesMiddleware } from './dataServicesMiddleware';
 
 const composeWithDevTools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
@@ -12,7 +12,7 @@ const composeWithDevTools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
 const rootMiddleware = composeWithDevTools(
   applyMiddleware(
     routerMiddleware(browserHistory),
-    apiMiddleware
+    dataServicesMiddleware
   )
 );
 
