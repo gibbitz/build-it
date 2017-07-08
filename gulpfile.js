@@ -193,7 +193,7 @@ var config          = require('./gulp.paths.json'),
 	|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 
 	gulp.task('test', function () {
-		return gulp.src([base.test + '**/?(*.)(spec|test).js?(x)'])
+		return gulp.src([base.test + '**.(spec|test).(js|jsx)'])
 			.pipe(plugins.plumber())
       .pipe(plugins.jest.default({
         cacheDirectory: '/.tmp/jest/<path>',

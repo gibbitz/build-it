@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { Link } from 'react-router';
+import { createLocationRequest } from '../actions';
 
 class WeatherWrapperView extends React.Component {
   static get propTypes(){
     return {
-      children: PropTypes.array
+      children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+      requestLocation: PropTypes.func
     };
   }
 
@@ -24,6 +26,10 @@ class WeatherWrapperView extends React.Component {
     super(props);
   }
 
+  componentWillMount(_nextProps) {
+    this.props.requestLocation();
+  }
+
   render() {
     return(
       <article className="weather-wrapper">
@@ -34,12 +40,14 @@ class WeatherWrapperView extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (_state) => ({
 
 });
 
-const mapDispatchToProps = (dispatch) => ({
-
+const mapDispatchToProps = (_dispatch) => ({
+  requestLocation: () => {
+    _dispatch(createLocationRequest());
+  }
 });
 
 
