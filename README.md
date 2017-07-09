@@ -79,13 +79,9 @@ The files for this project are broken out into two basic directories based on fr
   │       │
   │       ├─ middleware (Redux Middlewares for modifying actions before they go to the Reducers)
   │       │   │
-  │       │   ├─ vpAPI (VideoPlatform API -- makes API calls from dispatched actions and dispatches further actions for Reducers)
+  │       │   ├─ dataServicesMiddleware (makes API calls from dispatched actions and dispatches further actions on success)
   │       │   │
-  │       │   ├─ vpLogic (VideoPlatform API -- )
-  │       │   │
-  │       │   ├─ vpRedirect (Watches router and redirects based on authentication status)
-  │       │   │
-  │       │   └─ vpViewSynthesis (VideoPlatform API -- )
+  │       │   └─ applicationCacheMiddleware ( Manages singleton datastore not connected to react )
   │       │
   │       ├─ reducers (Redux Reducers -- segregation, again, encouraged)
   │       │
@@ -93,12 +89,7 @@ The files for this project are broken out into two basic directories based on fr
   │       │
   │       └─ views ("Page" level react components and wrappers are loose here.)
   │           │
-  │           ├─ components (React reused UI components -- think building-blocks/widgets)
-  │           │   │
-  │           │   └─ form-controls (Redux-form compatable react components used within forms (comboboxes, datepickers etc.))
-  │           │
-  │           └─ modal-components (Since modals have a consistent wrapper component their views are grouped here)
-  │
+  │           └─ components (React reused UI components -- think building-blocks/widgets)
   │
   ├─ gulp-paths.json ( paths & config used by gulpfile )
   │
