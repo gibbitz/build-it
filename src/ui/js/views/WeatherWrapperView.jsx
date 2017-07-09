@@ -31,9 +31,14 @@ class WeatherWrapperView extends React.Component {
   }
 
   render() {
+    let {town, state, country} = this.props;
+
     return(
       <article className="weather-wrapper">
-        WeatherWrapperView
+        <header>
+          <h1>{town}</h1>
+          <h2>{state}, {country}</h2>
+        </header>
         {this.props.children}
       </article>
     );
@@ -41,7 +46,9 @@ class WeatherWrapperView extends React.Component {
 }
 
 const mapStateToProps = (_state) => ({
-
+  town: _state.location.city,
+  state: _state.location.region,
+  country: _state.location.country
 });
 
 const mapDispatchToProps = (_dispatch) => ({

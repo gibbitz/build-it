@@ -1,14 +1,14 @@
 import {
-  SHOW_DAY
+  SHOW_STATS
 } from '../actions';
 
-const dayReducer = (state = {}, action) => {
+const statsReducer = (state = {}, action) => {
   let output = {},
       {payload, type} = action;
 
   switch(type) {
 
-    case SHOW_DAY:
+    case SHOW_STATS:
       output = { ...state, ...payload};
     break;
 
@@ -20,4 +20,4 @@ const dayReducer = (state = {}, action) => {
   return output;
 };
 
-export default dayReducer;
+export default statsReducer;

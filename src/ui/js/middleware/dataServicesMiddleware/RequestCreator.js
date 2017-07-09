@@ -29,7 +29,7 @@ const createRejectionHandler = (_name, _dispatch) => {
     // The object is warned below for stack access
     let expectedError = API_SERVICES[_name] && _error.status;
     _dispatch({
-      type: actionTypes[_name + actionTypes.ERROR],
+      type: _name + actionTypes.ERROR,
       payload: {
         status: _error.status || API_DEFAULT_STATUS_MESSAGES["206"],
         statusText: expectedError ? API_DEFAULT_STATUS_MESSAGES[_error.status] : _error.toString()

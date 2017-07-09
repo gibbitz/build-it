@@ -22,6 +22,7 @@ export const forecastFilter = (_data) => {
             MONTHS[date.getMonth()],
             date.getDate(),
           ].join(' '),
+          time: date.toLocaleString('en-US', {hour:'numeric', minute:'2-digit'}),
           temperature: _item.main.temp,
           humidity: _item.main.humidity,
           weather: {
