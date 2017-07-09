@@ -1,19 +1,16 @@
 import {
-  SHOW_DAY,
-  SHOW_STATS
+  LOCATION_BASE,
+  LOCATION_CACHED,
+  LOCATION_SUCCESS
 } from '../actions';
 
-const dayReducer = (state = {}, action) => {
+const locationReducer = (state = {}, action) => {
   let output = {},
       {payload, type} = action;
 
   switch(type) {
 
-    case SHOW_DAY:
-      output = { ...state, ...payload};
-    break;
-
-    case SHOW_STATS:
+    case LOCATION_CACHED:
       output = { ...state, ...payload};
     break;
 
@@ -25,4 +22,4 @@ const dayReducer = (state = {}, action) => {
   return output;
 };
 
-export default dayReducer;
+export default locationReducer;

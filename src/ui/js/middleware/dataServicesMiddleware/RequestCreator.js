@@ -16,12 +16,6 @@ const createSuccessDispatchers = (_name, _dispatch) => {
       payload:  _response.results || _response,
       pagination: _response.pagination || null
     });
-    // POST_SUCCESS dispatched after state is updated -- for redirection or ui related dispatchers
-    _dispatch({
-      type: actionTypes[_name + actionTypes.POST_SUCCESS] || _name + actionTypes.POST_SUCCESS,
-      payload: _response.results || _response,
-      pagination: _response.pagination || null
-    });
     // return _response for use in caller of makeRequest(s)()
     return _response;
   };

@@ -15,8 +15,8 @@ linters:
   Indentation:
     enabled: true
     allow_non_nested_indentation: false
-    character: tab # space # or 'tab'
-    width: 1
+    character: space # space # or 'tab'
+    width: 2
   QualifyingElement:
     enabled: false
   PlaceholderInExtend:

@@ -28,6 +28,7 @@ export const dataServicesMiddleware = _store => _next => _action => {
             ...API_SERVICES.FORECAST.requestDefaults,
             method: 'GET',
             query: {
+              ...API_SERVICES.FORECAST.requestDefaults.query,
               zip: _response.postal
             }
           }

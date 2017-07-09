@@ -33,9 +33,35 @@ export const API_SERVICES = {
     requestDefaults: {
       ...DEFAULT_REQUEST_INFO,
       query: {
-        APPID: 'dcc57a895eb36d221920f604b0cb8aca'
+        APPID: 'dcc57a895eb36d221920f604b0cb8aca',
+        units: 'imperial'
       }
     },
     loadingMessage: 'Checking the morning sky...'
   }
 };
+
+export const DAYS = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday'
+];
+
+export const MONTHS = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
+];

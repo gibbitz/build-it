@@ -3,7 +3,7 @@ const q = require('simple-object-query'); // commonJS module only :(
 let instance = null,
     cache;
 
-class SharedAppDataCache{
+class ApplicationCache{
   constructor(_props) {
     if(!instance){
       instance = this;
@@ -55,4 +55,4 @@ class SharedAppDataCache{
 
 }
 
-export default new SharedAppDataCache();
+export default new ApplicationCache();
