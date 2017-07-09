@@ -54,18 +54,12 @@ The files for this project are broken out into two basic directories based on fr
   ├─ src ( source files used to compilie build targets. Served in local development )
   │   │
   │   ├─ img
-  │   │   │
-  │   │   └─ sprites (folder for images to stitch together into sprites in the event that we decide to load assets)
   │   │
   │   ├─ scss
   │   │   │
   │   │   ├─ partials (mixins, variables, placeholders etc.)
   │   │   │
-  │   │   ├─ components (view-specific styling)
-  │   │   │
-  │   │   └─ sprite-templates (Handlebars templates used by spritesmith to generate mixins for backgruond images)
-  │   │
-  │   ├─ static-server (non-proxied files -- like `index.html` -- for development only)
+  │   │   └─ components (view-specific styling)
   │   │
   │   └─ js
   │       │
