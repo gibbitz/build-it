@@ -1,3 +1,25 @@
 .weather-wrapper {
-  border: 1px solid;
+  @extend %body-font;
+  color: $body-copy-color;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  margin: 0 auto;
+  padding-top: 5vh;
+  width: 90%;
+}
+
+.weather-wrapper__location {
+  color: $location-color;
+  flex: 1 1 auto;
+
+  .location__city {
+    @extend %title-font;
+    @extend %title-one;
+  }
+
+  .location__state-country {
+    @extend %body-font-light;
+    @extend %title-three;
+  }
 }

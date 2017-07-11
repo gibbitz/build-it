@@ -28,7 +28,7 @@ class WeekView extends React.Component {
   render() {
     return(
       <section className="weather-wrapper__week-view">
-        <ul>
+        <ul className="week-view__weeks">
           {
             Object.keys(this.props.week).map((_key, _index)=>{
               // get midday weather or first available if past 12:00 in current day

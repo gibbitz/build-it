@@ -1,3 +1,18 @@
 .weather-wrapper__week-view {
-  border: 1px solid #060;
+  @extend %overlay-block;
+
+  .week-view__weeks {
+    @extend %flex-list;
+  }
+
+  .weeks__daily-block {
+    a {
+      color: $body-copy-color;
+      text-decoration: none;
+    }
+
+    img {
+      vertical-align: middle;
+    }
+  }
 }

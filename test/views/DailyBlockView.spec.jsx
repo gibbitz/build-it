@@ -38,7 +38,7 @@ describe('*** DailyBlockView: Render Test',()=>{
     });
 
     it('+++ contains flat props', () => {
-        expect(wrapper.find('p').text()).toContain(props.temperature);
+        expect(wrapper.find('div').text()).toContain(props.temperature);
         expect(wrapper.find('h2').text()).toEqual(props.date);
     });
 

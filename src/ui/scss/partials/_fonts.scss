@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:300,500');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:700');
+
+%title-font {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 700;
+}
+
+%body-font {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
+}
+
+%body-font-light {
+  @extend %body-font;
+  font-weight: 300;
+}
+
+%no-margin {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+%title-one {
+  @extend %no-margin;
+  font-size: 2rem;
+  line-height: 1.1em;
+}
+
+%title-two {
+  @extend %no-margin;
+  font-size: 1.5rem;
+  line-height: 1em;
+}
+
+%title-three {
+  @extend %no-margin;
+  font-size: 1.2rem;
+  line-height: 1em;
+}
+
+%body-one {
+  @extend %no-margin;
+  font-size: 1.1rem;
+  line-height: 1.1em;
+}
+
+%body-two {
+  @extend %no-margin;
+  font-size: 1rem;
+  line-height: 1.2em;
+}
+
+%body-three {
+  @extend %no-margin;
+  font-size: .8rem;
+  line-height: 1.1em;
+}

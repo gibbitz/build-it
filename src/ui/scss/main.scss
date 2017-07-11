@@ -1,4 +1,10 @@
 @import 'normalize';
+@import 'variables';
+@import 'fonts';
+@import 'breakpoints';
+@import 'mixins';
+@import 'placeholders';
+@import 'global';
 @import 'components/WeatherWrapperView';
 @import 'components/WeekView';
 @import 'components/DayView';

@@ -8,7 +8,10 @@ class WeatherWrapperView extends React.Component {
   static get propTypes(){
     return {
       children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-      requestLocation: PropTypes.func
+      requestLocation: PropTypes.func,
+      town: PropTypes.string,
+      state: PropTypes.string,
+      country: PropTypes.string
     };
   }
 
@@ -35,9 +38,9 @@ class WeatherWrapperView extends React.Component {
 
     return(
       <article className="weather-wrapper">
-        <header>
-          <h1 className='city'>{town}</h1>
-          <h2>{state}, {country}</h2>
+        <header className="weather-wrapper__location">
+          <h1 className="location__city">{town}</h1>
+          <h2 className="location__state-country">{state}, {country}</h2>
         </header>
         {this.props.children}
       </article>

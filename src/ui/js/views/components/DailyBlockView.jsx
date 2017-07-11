@@ -28,14 +28,17 @@ export class DailyBlockView extends React.Component {
   }
 
   render() {
-    let { linkKey, date, temperature, weather:{icon, text}} = this.props;
+    let { linkKey, date, temperature, weather:{icon, text, id}} = this.props;
     return(
-      <li className="week-view__daily-block">
+      <li className="weeks__daily-block">
         <Link to={`/${linkKey}`}>
-          <p><img src={icon} alt={text}/>
-          {temperature}<sup>&deg;</sup>
-          </p>
-          <h2>{date}</h2>
+          <div className={`icon-${id}`}>
+            <img src={icon} alt={text}/>
+            {temperature}<sup>&deg;</sup>
+          </div>
+          <h2>
+            {date}
+          </h2>
         </Link>
       </li>
     );

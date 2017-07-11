@@ -1,0 +1,36 @@
+// MIXINS
+
+@mixin media ($query) {
+  @media (#{$query}) {
+    @content;
+  }
+}
+
+// font-face
+
+@mixin set-font($name, $file-name) {
+  @font-face {
+    font-family: $name;
+
+    src: url('/fonts/#{$file-name}.eot');
+    src: url('/fonts/#{$file-name}.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/#{$file-name}.woff2') format('woff2'),
+         url('/fonts/#{$file-name}.woff') format('woff'),
+         url('/fonts/#{$file-name}.svg') format('svg');
+
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+// em calc
+
+$browser-context: 16; // Default
+
+@function em($pixels, $context: $browser-context) {
+  @return #{$pixels / $context}em;
+}
+
+@function rem($pixels, $context: $browser-context) {
+  @return #{$pixels / $context}rem;
+}

@@ -1,0 +1,38 @@
+
+$mobile-small-portrait-size: em(320);
+$mobile-portrait-size: em(384);
+$iphone6-width: em(375);
+$iphone6-plus-width: em(414);
+$mid-mobile-utility: em(550);
+$mobile-landscape-size: em(736); //iphone 6 and under
+$iphone-6plus-landscape-size: em(736); //iphone 6plus
+$tablet-portrait-size: em(800);
+$tablet-landscape-size: em(1024);
+$desktop-small-size: em(950);
+$desktop-medium-size: em(1024);
+$desktop-large-size: em(1200);
+$desktop-huge-size: em(1500);
+
+// mo-bile bps
+$mobile-small-portrait: 'max-width: $mobile-small-portrait-size';
+$mobile-portrait: 'max-width: $mobile-portrait-size';
+$mobile-large-portrait: 'max-width: $mobile-landscape-size';
+$mobile-landscape: 'max-width: $mobile-landscape-size) and (orientation: landscape';
+$iphone6: 'max-width: $iphone6-width) and (min-width: $iphone6-width';
+$iphone6-plus: 'max-width: $iphone6-plus-width) and (min-width: $iphone6-plus-width';
+$iphone-6plus-landscape: 'max-width: $iphone-6plus-landscape-size) and (orientation: landscape';
+$mid-mobile-550: 'max-width: $mid-mobile-utility';
+$all-mobile: 'max-width: $desktop-small-size';
+
+// tab-let bps
+$tablet: 'max-width: $tablet-portrait-size';
+$tablet-landscape: 'max-width: $tablet-landscape-size) and (orientation: landscape';
+
+// desk-top bps
+$all-desktop: 'min-width: $desktop-small-size';
+$desktop: 'max-width: $desktop-large-size';
+$small-desktop: 'max-width: $desktop-medium-size';
+$large-desktop: 'min-width: $desktop-large-size';
+$huge-desktop: 'min-width: $desktop-huge-size';
+$short-desktop: 'max-height: $tablet-portrait-size) and (min-width: $tablet-portrait-size';
+
