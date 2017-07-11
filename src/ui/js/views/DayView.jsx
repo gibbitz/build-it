@@ -12,8 +12,7 @@ class DayView extends React.Component {
       today: PropTypes.string,
       temperature: PropTypes.number,
       description: PropTypes.string,
-      icon: PropTypes.string,
-      hours: PropTypes.object
+      icon: PropTypes.string
     };
   }
 
@@ -59,8 +58,7 @@ const mapStateToProps = (state) => ({
   today: state.day[0] && state.day[0].date,
   temperature: state.day[0] && state.day[0].temperature,
   description: state.day[0] && state.day[0].weather.text,
-  icon: state.day[0] && state.day[0].weather.icon,
-  hours: state.day,
+  icon: state.day[0] && state.day[0].weather.icon
 });
 
 const mapDispatchToProps = (dispatch) => ({

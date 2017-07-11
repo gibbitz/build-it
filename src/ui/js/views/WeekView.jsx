@@ -13,7 +13,7 @@ class WeekView extends React.Component {
 
   static get defaultProps(){
     return {
-
+      week: {}
     };
   }
 

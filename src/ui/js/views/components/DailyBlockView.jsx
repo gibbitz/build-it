@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { Link } from 'react-router';
 
-class DailyBlockView extends React.Component {
+export class DailyBlockView extends React.Component {
   static get propTypes(){
     return {
       linkKey: PropTypes.string,

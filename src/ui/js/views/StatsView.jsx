@@ -20,7 +20,7 @@ class StatsView extends React.Component {
 
   static get defaultProps(){
     return {
-      hours: []
+      hours: {}
     };
   }
 
@@ -53,7 +53,7 @@ class StatsView extends React.Component {
               return (
                 <li key={_index}>
                   <p>
-                    <img src={hour.weather.icon} alt={hour.weather.description}/>
+                    <img src={hour.weather.icon} alt={hour.weather.text}/>
                     {hour.temperature}<sup>&deg;</sup>
                     {hour.humidity}
                   </p>

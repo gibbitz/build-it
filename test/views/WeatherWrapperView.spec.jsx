@@ -1,29 +1,53 @@
+/* globals expect */
+
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer';
-import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
+// import configureStore from 'redux-mock-store';
+
+import configureStore from '../../src/ui/js/store';
 
 import WeatherWrapperView from '../../src/ui/js/views/WeatherWrapperView.jsx';
 
-
 describe('*** WeatherWrapperView: Render Test',()=>{
-    let wrapper;
+    const town = 'Anywhere USA',
+          state = 'Denial',
+          country = 'USA';
 
-    const output = 10;
+    let wrapper,
+        store = configureStore({
+            location: {
+                city: town,
+                region: state,
+                country: country
+            }
+        });
+
 
     beforeEach(()=>{
-        wrapper = shallow(<article className="weather-wrapper"/>);
+        wrapper = mount(
+            <Provider store={store}>
+                <WeatherWrapperView />
+            </Provider>
+        );
 
     });
 
     it('+++ render the component', () => {
-       expect(wrapper.length).toEqual(1);
+       expect(wrapper.find(WeatherWrapperView).length).toEqual(1);
     });
 
-    it('+++ contains output', () => {
-        expect(wrapper.find('input[placeholder="Output"]').prop('value')).toEqual(output);
+    it('+++ features town', () => {
+        expect(wrapper.find('header h1').text()).toEqual(town);
+    });
+
+    it('+++ contains state and country', () => {
+        expect(wrapper.find('header h2').text()).toContain(state);
+        expect(wrapper.find('header h2').text()).toContain(country);
     });
 
 });
+
+

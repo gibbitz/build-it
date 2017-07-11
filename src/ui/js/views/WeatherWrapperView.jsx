@@ -36,7 +36,7 @@ class WeatherWrapperView extends React.Component {
     return(
       <article className="weather-wrapper">
         <header>
-          <h1>{town}</h1>
+          <h1 className='city'>{town}</h1>
           <h2>{state}, {country}</h2>
         </header>
         {this.props.children}
