@@ -6,6 +6,8 @@
   }
 
   .weeks__daily-block {
+    @extend %body-one;
+
     a {
       color: $body-copy-color;
       text-decoration: none;
@@ -13,6 +15,10 @@
 
     img {
       vertical-align: middle;
+    }
+
+    h2 {
+      @extend %title-three
     }
   }
 }
