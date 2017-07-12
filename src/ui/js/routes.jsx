@@ -15,11 +15,12 @@ export default (_store) => {
       <Route
         path={routes.DAY_ROUTE}
         component={DayView}
-      />
-      <Route
-        path={routes.STATS_ROUTE}
-        component={StatsView}
-      />
+      >
+        <Route
+          path={routes.STATS_ROUTE}
+          component={StatsView}
+        />
+      </Route>
     </Route>
   );
 };

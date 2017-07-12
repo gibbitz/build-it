@@ -39,36 +39,29 @@ class StatsView extends React.Component {
   render() {
     let {today, temperature, humidity, description, icon, hours, params:{day}} = this.props;
     return(
-      <section className="weather-wrapper__day-view">
-        <p>
-          <img src={icon} alt={description}/>
-          {temperature}<sup>&deg;</sup>
-          {humidity}
-        </p>
-        <h2>{today}</h2>
-        <ul>
+      <section>
+        <ul className="stats__hourly">
           {
             Object.keys(hours).map((_key, _index)=>{
               let hour = hours[_key];
               return (
-                <li key={_index}>
-                  <p>
-                    <img src={hour.weather.icon} alt={hour.weather.text}/>
-                    {hour.temperature}<sup>&deg;</sup>
-                    {hour.humidity}
-                  </p>
+                <li key={_index} className="stats__hour">
+                  <div className="hour__weather">
+                    <i className={hour.weather.icon} title={hour.weather.text} />
+                    <span className="weather__temperature">
+                      {hour.temperature}
+                      <sup>&deg;</sup>
+                    </span>
+                    <span className="weather__humidity">
+                      {hour.humidity}% <small>humidity</small>
+                    </span>
+                  </div>
                   <h2>{hour.time}</h2>
                 </li>
               );
             })
           }
         </ul>
-        <Link to="/">
-          home
-        </Link>
-        <Link to={`/${day}`}>
-          back
-        </Link>
       </section>
     );
   }

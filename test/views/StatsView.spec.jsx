@@ -68,21 +68,17 @@ describe('*** StatsView: Render Test',()=>{
         expect(wrapper.find(StatsView).find('li').length).toEqual(hourCount);
     });
 
-    it('+++ contains props', () => {
-        expect(wrapper.find(Link).last().prop('to')).toContain(params.day);
-    });
-
     it('+++ contains flat props from state', () => {
         let firstItem = wrapper.find(StatsView).find('li').first();
-        expect(firstItem.find('p').first().text()).toContain(baseHourObject.temperature);
-        expect(firstItem.find('p').first().text()).toContain(baseHourObject.humidity);
+        expect(firstItem.find('div').first().text()).toContain(baseHourObject.temperature);
+        expect(firstItem.find('div').first().text()).toContain(baseHourObject.humidity);
         expect(firstItem.find('h2').first().text()).toEqual(baseHourObject.time);
     });
 
     it('+++ contains nested props from state', () => {
-        let firstIcon = wrapper.find(StatsView).find('li').first().find('img');
-        expect(firstIcon.prop('alt')).toEqual(weatherObj.text);
-        expect(firstIcon.prop('src')).toEqual(weatherObj.icon);
+        let firstIcon = wrapper.find(StatsView).find('li').first().find('i');
+        expect(firstIcon.prop('title')).toEqual(weatherObj.text);
+        expect(firstIcon.prop('className')).toContain(weatherObj.icon);
     });
 
 });

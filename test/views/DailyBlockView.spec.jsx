@@ -43,8 +43,8 @@ describe('*** DailyBlockView: Render Test',()=>{
     });
 
     it('+++ contains nested props', () => {
-        expect(wrapper.find(Link).find('img').prop('src')).toEqual(props.weather.icon);
-        expect(wrapper.find(Link).find('img').prop('alt')).toEqual(props.weather.text);
+        expect(wrapper.find(Link).find('i').prop('className')).toContain(props.weather.icon);
+        expect(wrapper.find(Link).find('i').prop('title')).toEqual(props.weather.text);
     });
 
 });

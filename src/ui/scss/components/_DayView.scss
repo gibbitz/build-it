@@ -1,3 +1,38 @@
 .weather-wrapper__day-view {
-  border: 1px solid #600;
+  @extend %overlay-block;
+  @extend %day-block;
+
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  min-width: 300px;
+  width: 30%;
+
+  &.day-view--expanded {
+    width: 90%;
+  }
+
+  .day-view__links {
+    border-top: 1px solid rgba($black, .2);
+    display: flex;
+    font-size: .8rem;
+    font-weight: 300;
+    justify-content: space-between;
+    line-height: 1rem;
+    margin-top: 1rem;
+    padding: .5rem;
+    width: 90%;
+  }
+
+  .weather__humidity {
+    display: block;
+    margin: .3em 0;
+    min-width: 100%;
+    text-align: center;
+
+    small {
+      font-weight: 300;
+    }
+  }
 }

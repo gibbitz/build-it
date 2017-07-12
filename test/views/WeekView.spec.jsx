@@ -15,6 +15,7 @@ import DailyBlockView from '../../src/ui/js/views/components/DailyBlockView.jsx'
 describe('*** WeekView: Render Test',()=>{
     const weatherObj = {
             icon: 'icon',
+            iconImage: 'iconImage',
             text: 'text',
          },
          baseHourObject = {

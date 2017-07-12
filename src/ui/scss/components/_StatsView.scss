@@ -1,3 +1,61 @@
-.weather-wrapper__stats-view {
-  border: 1px solid #006;
+.day-view__stats {
+ // @extend %overlay-block;
+  @include media($all-mobile) {
+    margin: 20px auto 0;
+    max-height: 53vh;
+    overflow: auto;
+    width: 95%;
+  }
+
+  .stats__hourly {
+    @extend %flex-list;
+
+    @include media($all-mobile) {
+      // flex-wrap: wrap;
+      margin: 0 auto;
+      width: 70%;
+    }
+
+    @include media($mobile-small-portrait) {
+
+    }
+  }
+
+  .hour__weather {
+    @include media($all-mobile) {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+
+      .owf,
+      .weather__temperature {
+        flex: 1 1 auto;
+      }
+
+      .weather__humidity {
+        flex: .5 .5 auto;
+        min-width: 56%;
+      }
+    }
+  }
+
+  .stats__hour {
+    @include media($all-mobile) {
+      align-items: center;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+
+      .hour__weather {
+        flex: 1 1 auto;
+        flex-wrap: wrap;
+        order: 2;
+      }
+
+      h2 {
+        flex: .5 .5 auto;
+        order: 1;
+      }
+    }
+  }
 }

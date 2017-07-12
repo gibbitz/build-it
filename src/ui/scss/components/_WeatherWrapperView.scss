@@ -5,6 +5,8 @@
   flex-direction: column;
   height: 90vh;
   margin: 0 auto;
+  max-width: rem($max-screen-width);
+  min-width: 300px;
   padding-top: 5vh;
   width: 90%;
 }

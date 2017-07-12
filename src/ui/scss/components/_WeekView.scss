@@ -1,24 +1,22 @@
 .weather-wrapper__week-view {
   @extend %overlay-block;
 
+  @include media($all-mobile) {
+    margin: 0 auto;
+    min-width: 300px;
+    width: 60%;
+  }
+
   .week-view__weeks {
     @extend %flex-list;
+    width: 95%;
+
+    @include media($all-mobile) {
+      align-items: center;
+    }
   }
 
   .weeks__daily-block {
-    @extend %body-one;
-
-    a {
-      color: $body-copy-color;
-      text-decoration: none;
-    }
-
-    img {
-      vertical-align: middle;
-    }
-
-    h2 {
-      @extend %title-three
-    }
+    @extend %day-block;
   }
 }

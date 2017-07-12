@@ -61,13 +61,13 @@ describe('*** DayView: Render Test',()=>{
     });
 
     it('+++ contains flat props from state', () => {
-        expect(wrapper.find('p').text()).toContain(baseHourObject.temperature);
+        expect(wrapper.find('.day-view__weather').text()).toContain(baseHourObject.temperature);
         expect(wrapper.find('h2').text()).toEqual(baseHourObject.date);
     });
 
     it('+++ contains nested props from state', () => {
-        expect(wrapper.find('img').prop('alt')).toContain(weatherObj.text);
-        expect(wrapper.find('img').prop('src')).toEqual(weatherObj.icon);
+        expect(wrapper.find('i').prop('title')).toContain(weatherObj.text);
+        expect(wrapper.find('i').prop('className')).toContain(weatherObj.icon);
     });
 
 });

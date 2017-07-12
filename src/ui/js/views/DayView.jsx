@@ -11,8 +11,11 @@ class DayView extends React.Component {
       setDayState: PropTypes.func,
       today: PropTypes.string,
       temperature: PropTypes.number,
+      humidity: PropTypes.number,
       description: PropTypes.string,
-      icon: PropTypes.string
+      icon: PropTypes.string,
+      children: PropTypes.array,
+      hours: PropTypes.array
     };
   }
 
@@ -35,20 +38,39 @@ class DayView extends React.Component {
   }
 
   render() {
-    let {today, temperature, description, icon, hours, params:{day}} = this.props;
+    let {today, temperature, humidity, description, icon, hours, params:{day}} = this.props;
     return(
-      <section className="weather-wrapper__day-view">
-        <p>
-          <img src={icon} alt={description}/>
-          {temperature}<sup>&deg;</sup>
-        </p>
+      <section className={`weather-wrapper__day-view ${this.props.children && ' day-view--expanded'}`}>
+        <div className="day-view__weather">
+          <i className={icon} title={description} />
+          <span className="weather__temperature">
+            {temperature}
+            <sup>&deg;</sup>
+          </span>
+          <span className="weather__humidity">
+            {humidity}%<small> humidity</small>
+          </span>
+        </div>
         <h2>{today}</h2>
-        <Link to="/">
-          back
-        </Link>
-        <Link to={`/${day}/statistics`}>
-          detail
-        </Link>
+        <div className="day-view__stats">
+          {this.props.children}
+        </div>
+        <nav className="day-view__links">
+          <Link to="/">
+            back
+          </Link>
+          {!this.props.children &&
+            <Link to={`/${day}/statistics`}>
+              show detail
+            </Link>
+          }
+          {this.props.children &&
+
+            <Link className="stats__close" to={`/${day}`}>
+              hide detail
+            </Link>
+          }
+        </nav>
       </section>
     );
   }
@@ -57,6 +79,7 @@ class DayView extends React.Component {
 const mapStateToProps = (state) => ({
   today: state.day[0] && state.day[0].date,
   temperature: state.day[0] && state.day[0].temperature,
+  humidity: state.day[0] && state.day[0].humidity,
   description: state.day[0] && state.day[0].weather.text,
   icon: state.day[0] && state.day[0].weather.icon
 });

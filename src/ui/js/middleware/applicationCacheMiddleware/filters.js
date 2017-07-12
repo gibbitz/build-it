@@ -26,7 +26,8 @@ export const forecastFilter = (_data) => {
           temperature: _item.main.temp,
           humidity: _item.main.humidity,
           weather: {
-            icon: 'http://openweathermap.org/img/w/' + _item.weather[0].icon + '.png',
+            icon: 'owf owf-' + _item.weather[0].id +' owf-3x',
+            iconImage: 'http://openweathermap.org/img/w/' + _item.weather[0].icon + '.png',
             text: _item.weather[0].description,
             id: _item.weather[0].id
           }
