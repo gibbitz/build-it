@@ -29,7 +29,8 @@ export const dataServicesMiddleware = _store => _next => _action => {
             method: 'GET',
             query: {
               ...API_SERVICES.FORECAST.requestDefaults.query,
-              zip: _response.postal
+              lat: _response.loc.split(',')[0],
+              lon: _response.loc.split(',')[1]
             }
           }
         );
