@@ -91,7 +91,6 @@ var config          = require('./gulp.paths.json'),
       console.log(_file.contents.toString('utf-8'));
       _cb(null, _file);
     },
-    testBundler,
     devBundler,
     releaseBundler;
 
@@ -196,10 +195,12 @@ var config          = require('./gulp.paths.json'),
   |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 
   gulp.task('test', function () {
-    return gulp.src([base.srcRoot + base.test + '**?(.spec|.test)?(x.js|.jsx)'])//(spec|test).
-      // .pipe(plugins.plumber())
+    return gulp.src([
+      base.srcRoot + base.test])
+    //return gulp.src([base.srcRoot + base.test + '**?(.spec|.test)?(x.js|x.jsx)'])
+      .pipe(plugins.plumber())
       .pipe(plugins.jest.default({
-        cacheDirectory: base.srcRoot + '../.tmp/jest/',
+
       }));
   });
 
