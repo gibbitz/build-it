@@ -14,7 +14,7 @@ class DayView extends React.Component {
       humidity: PropTypes.number,
       description: PropTypes.string,
       icon: PropTypes.string,
-      children: PropTypes.array,
+      children: PropTypes.object,
       hours: PropTypes.array
     };
   }

@@ -23,8 +23,10 @@ export default ApplicationCache;
 export const applicationCacheMiddleware = _store => _next => _action => {
   let dispatch = _store.dispatch,
       conditionalStateUpdate = (_cacheObject, _newPayload) => {
+        let existingCache = ApplicationCache.data && ApplicationCache.data.pending ?
+          ApplicationCache.data.pending : [];
         if(!_cacheObject){
-          ApplicationCache.data = { pending: {..._action} };
+          ApplicationCache.data = { pending: [ ...existingCache, {..._action}] };
           return {};
         }else{
           return _newPayload;
@@ -53,21 +55,17 @@ export const applicationCacheMiddleware = _store => _next => _action => {
       dispatch(createShowWeekAction());
       // if state updates were requested while loading...
       if(ApplicationCache.get('pending')){
-        dispatch(ApplicationCache.get('pending'));
-        ApplicationCache.data.pending = false;
+          ApplicationCache.get('pending').map((_cachedAction, _index)=>{
+            Promise.resolve(_cachedAction).then((_action) => {dispatch(_action);});
+          });
+          ApplicationCache.data.pending = false;
       }
     break;
     case SHOW_WEEK:
       _action.payload = ApplicationCache.get('FORECAST');
     break;
     case SHOW_DAY:
-      _action.payload = conditionalStateUpdate(
-        ApplicationCache.data.FORECAST,
-        ApplicationCache.get('FORECAST.' + _action.payload)
-      );
-    break;
     case SHOW_STATS:
-      // in case I decide to change the state, prolly yagni
       _action.payload = conditionalStateUpdate(
         ApplicationCache.data.FORECAST,
         ApplicationCache.get('FORECAST.' + _action.payload)

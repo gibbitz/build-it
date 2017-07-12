@@ -254,6 +254,13 @@ var config          = require('./gulp.paths.json'),
       .pipe(gulp.dest( base.dist + paths.fonts ));
   });
 
+  gulp.task('copy:release', ['clean'], function(){
+    return gulp.src(base.src + 'index.html')
+      .pipe(plugins.plumber())
+      .pipe(plugins.flatten())
+      .pipe(gulp.dest( base.dist ));
+  });
+
   gulp.task('modifyFontpaths', ['prebundle'], function(){
     return gulp.src(base.tmp + paths.scss + '**')
       .pipe(plugins.plumber())
@@ -366,7 +373,7 @@ var config          = require('./gulp.paths.json'),
  |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| */
 
   // gulp.task('js', ['scss:release', 'lint:js'], function() {
-  gulp.task('js:default', [ 'test', 'modifyFontpaths', 'copyFonts', 'lint:scss', 'lint:js'], function() {
+  gulp.task('js:default', [ 'modifyFontpaths', 'copyFonts', 'lint:scss', 'lint:js'], function() {
     return devBundler.bundle()
       .on('error', function(err){
         // print the error -- if you get this far you'll know it ;)
@@ -381,7 +388,7 @@ var config          = require('./gulp.paths.json'),
       .pipe( gulp.dest( base.tmp + paths.scripts ));
   });
 
-  gulp.task('js:release', ['test', 'modifyFontpaths', 'copyFonts', 'image-min:release', 'lint:scss', 'lint:js' ], function() {
+  gulp.task('js:release', ['test', 'modifyFontpaths', 'copyFonts:release', 'copy:release', 'image-min:release', 'lint:scss', 'lint:js' ], function() {
     return releaseBundler.bundle()
       .on('error', function(err){
         // print the error -- if you get this far you'll know it ;)
@@ -390,6 +397,7 @@ var config          = require('./gulp.paths.json'),
         this.emit('end');
       })
       .pipe(plugins.plumber())
+      .pipe(plugins.env({vars:{NODE_ENV:'production'}}))
       .pipe(source('app.jsx'))
       .pipe(buffer())
       .pipe(plugins.uglify())
