@@ -7,10 +7,11 @@ import {
   CACHED
 } from '../actions';
 
-export const createDataRequest = () => {
+export const createDataRequest = (_testCallback) => {
   return {
     type: DATA_REQUEST,
-    payload:{}
+    payload:{},
+    callback: _testCallback
   };
 };
 
