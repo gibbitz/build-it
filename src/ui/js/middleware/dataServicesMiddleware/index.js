@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { DATA_REQUEST, DATA_SUCCESS, DATA_BASE, LOCATION_BASE } from '../../actions';
 import { API_SERVICES } from '../../constants';
 import RequestCreator from './RequestCreator';
